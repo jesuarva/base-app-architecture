@@ -12,7 +12,7 @@ export const initialState = {
   previousState: '',
   currentState: STATES.loggedOut,
   auth: {
-    user: '',
+    username: '',
     password: '',
   },
 }

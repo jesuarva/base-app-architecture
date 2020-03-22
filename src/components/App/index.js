@@ -1,27 +1,31 @@
 import React, { useReducer } from 'react'
-import Context, { reducer, initialState } from '../../state'
-import Login from '../Login'
-import styles from './App.module.scss'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Context, { reducer, initialState, STATES } from 'state/index'
+import Login from 'components/Login'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
+import Page404 from 'components/Page404'
+import styles from './styles.module.scss'
+import Main from 'components/Main'
 
-function App() {
+export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
+  console.log('App', { state: state.currentState })
   return (
     <Context.Provider value={{ state, dispatch }}>
       <div className={styles.app}>
-        <header className={styles.header}>
-          <a href="#!">Nav link</a>
-          <a href="#!">Nav link</a>
-        </header>
+        <Header />
         <main className={styles.main}>
-          <Login />
+          <Switch>
+            <Route exact path="/">
+              {state.currentState === STATES.loggedIn ? <Main /> : <Redirect to="/login" />}
+            </Route>
+            <Route path="/login" component={Login} />
+            <Route component={Page404} />
+          </Switch>
         </main>
-        <footer className={styles.footer}>
-          <a href="#!">Legal</a>
-          <a href="#!">Contact</a>
-        </footer>
+        <Footer />
       </div>
     </Context.Provider>
   )
 }
-
-export default App

@@ -1,0 +1,21 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  outline: 1px solid red;
+
+  .header, .footer {
+    flex: 0 0 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .main {
+    outline: 1px solid green;
+    flex: 1 0 auto;
+  }
+  
+}
+

@@ -3,4 +3,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  .logout-button {
+    outline: 1px solid greenyellow;
+  }
 }

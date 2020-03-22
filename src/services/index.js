@@ -34,6 +34,7 @@ function JwtManagerController() {
       tokenType = token_type || 'Bearer'
       expiresInMilliseconds = expires_in || expiresInMilliseconds
       lastCallTimeInMilliseconds = Date.now() - 30 // Consider a latency of 30ms
+      ServiceManager.updateAxiosInstance()
     },
     reset() {
       JWToken = ''

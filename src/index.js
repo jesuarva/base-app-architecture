@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { enableAllPlugins } from 'immer'
-import './index.scss'
-import App from './components/App'
+import App from 'components/App'
 import * as serviceWorker from './serviceWorker'
+import './index.scss'
 
 enableAllPlugins()
 

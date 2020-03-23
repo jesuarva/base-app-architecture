@@ -3,10 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  outline: 1px solid red;
 
   .main {
-    outline: 1px solid green;
+    outline: orchid solid 1px;
     flex: 1 0 auto;
   }
 }

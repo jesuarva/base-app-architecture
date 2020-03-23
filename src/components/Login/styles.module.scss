@@ -1,9 +1,23 @@
+@import '../../scss/variables';
+
+.wrapper {
+  color: $main-color;
+}
+
 form {
-  outline: 1px dotted blue;
+  flex: 0 0 50%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 59px;
+  background: linear-gradient(315deg, #fcddf8, #fcfcfc);
+  box-shadow:  -12px -12px 44px #fdfcfd, 12px 12px 44px #dfdfdf;
 
   > div {
+    // flex: 0 0 50%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     margin-bottom: 2em;
@@ -13,9 +27,22 @@ form {
     display: flex;
     flex-direction: column;
   }
+
+  .submit > [type='submit'] {
+    cursor: pointer;
+    padding: 16px 22px;
+    // margin: 4px 2px;
+    background-color: #da71d7;
+    border-radius: 20px;
+    color: $secondary-color;
+    font-size: medium;
+    font-weight: bold;
+  }
 }
 
 label {
+  text-align: center;
+
   > span {
     margin-bottom: 0.5em;
   }
@@ -28,5 +55,9 @@ label {
   > .field-hint {
     font-size: smaller;
     font-style: italic;
+  }
+
+  > .form-error {
+    color: orangered;
   }
 }

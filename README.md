@@ -1,4 +1,27 @@
+# base-app-architecture
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Built with a focus on maintainability, scalability and modularity.
+
+The App considers the following pillars and tries to keep them as independent of each other as possible: `Services`, `State`, `Components`, `Styles`.
+
+### SERVICES
+
+Implements two mains objects-managers each one configurable, extensible and agnostic of API-hosts.
+Instances: ServiceManager and JwtManager.
+
+### STATE
+
+In the sake of simplicity the implementation makes use of React's useReducer and Context. As the App scales on the complexity shifting to other state management tool won't require much work.
+
+### COMPONENTS
+
+Are built in a cohesive manner, trying to avoiding unnecessary external dependencies.
+
+### STYLES
+
+Bare minimum implemented to facilitate plug-in upcoming designs.
 
 ## Available Scripts
 
@@ -66,4 +89,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# base-app-architecture

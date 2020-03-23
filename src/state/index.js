@@ -11,10 +11,7 @@ export const STATES = {
 export const initialState = {
   previousState: '',
   currentState: STATES.loggedOut,
-  auth: {
-    username: '',
-    password: '',
-  },
+  userLoggedIn: false,
 }
 
 export function reducer(state = initialState, action) {
@@ -22,9 +19,12 @@ export function reducer(state = initialState, action) {
 
   switch (state.currentState) {
     case STATES.loggedOut: {
+      console.log('Reducer 1')
+
       return loggedOutReducer(state, action)
     }
     case STATES.loggedIn: {
+      console.log('Reducer 2')
       return loggedInReducer(state, action)
     }
     default:
@@ -35,6 +35,10 @@ export function reducer(state = initialState, action) {
 function loggedOutReducer(state, action) {
   switch (action.type) {
     case 'logUser':
+      return produce(state, draftState => {
+        draftState.userLoggedIn = true
+      })
+    case 'stateTransition':
       return produce(state, draftState => {
         draftState.currentState = STATES.loggedIn
       })
@@ -48,6 +52,7 @@ function loggedInReducer(state, action) {
     case 'logoutUser':
       return produce(state, draftState => {
         draftState.currentState = STATES.loggedOut
+        draftState.userLoggedIn = false
       })
     default:
       return state

@@ -10,7 +10,6 @@ import Main from 'components/Main'
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
-  console.log('App', { state: state.currentState })
   return (
     <Context.Provider value={{ state, dispatch }}>
       <div className={styles.app}>

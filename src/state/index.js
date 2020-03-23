@@ -15,16 +15,11 @@ export const initialState = {
 }
 
 export function reducer(state = initialState, action) {
-  console.log('Reducer:', action)
-
   switch (state.currentState) {
     case STATES.loggedOut: {
-      console.log('Reducer 1')
-
       return loggedOutReducer(state, action)
     }
     case STATES.loggedIn: {
-      console.log('Reducer 2')
       return loggedInReducer(state, action)
     }
     default:

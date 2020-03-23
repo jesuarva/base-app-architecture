@@ -51,7 +51,6 @@ function JwtManagerController() {
       const { method = 'post', endpoint = 'login', queryParams, bodyParams } = (requestConfig = config)
       return JwtAxiosInstance[method](`${endpoint}${getQueryParamsString(queryParams)}`, bodyParams)
         .then(({ data: { token } }) => {
-          console.log('requestJWT', token)
           this.update({ token })
         })
         .catch(e => {

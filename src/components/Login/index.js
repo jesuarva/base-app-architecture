@@ -1,13 +1,13 @@
-import React, { useReducer, useContext, useEffect, useCallback } from 'react'
+import React, { useReducer, useContext, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
-import StateContext, { STATES } from 'state/index'
+import StateContext from 'state/index'
 import { JwtManager, ServiceManager } from 'services/index'
 import { loginReducer, initialState, ACTIONS, LOGIN_STATES } from './loginState'
 import styles from './styles.module.scss'
 
 export default function Login() {
   const {
-    state: { currentState, userLoggedIn },
+    state: { userLoggedIn },
     dispatch: dispatchToGlobalStateReducer,
   } = useContext(StateContext)
   const [loginState, dispatchToLoginReducer] = useReducer(loginReducer, initialState)
@@ -20,22 +20,16 @@ export default function Login() {
   const handleSubmit = useCallback(
     event => {
       event.preventDefault()
-      console.log(event.target)
       if (loginState.currentState !== LOGIN_STATES.fillForm) return
 
       dispatchToLoginReducer({ type: ACTIONS.stateTransition, nextState: LOGIN_STATES.validatingCredentials })
       JwtManager.requestJwt({
-        // bodyParams: loginState.form,
-        bodyParams: {
-          username: 'jeff1967',
-          password: 'hotdog',
-        },
+        bodyParams: loginState.form,
       })
         .then(() => {
           return ServiceManager.makeRequest({ method: 'get', endpoint: 'verifyToken' })
         })
         .then(async response => {
-          console.log('SUCCESS', { response })
           dispatchToLoginReducer({ type: ACTIONS.stateTransition, nextState: LOGIN_STATES.authSuccess })
           dispatchToGlobalStateReducer({ type: 'logUser' })
 
@@ -48,10 +42,8 @@ export default function Login() {
           dispatchToLoginReducer({ type: ACTIONS.stateTransition, nextState: LOGIN_STATES.fillForm })
         })
     },
-    [dispatchToGlobalStateReducer, history, loginState.currentState],
+    [dispatchToGlobalStateReducer, history, loginState.currentState, loginState.form],
   )
-
-  console.log('Login 2', { userLoggedIn, globalState: currentState, loginState: loginState.currentState })
 
   return (
     <div className={`component-container ${styles.wrapper}`}>

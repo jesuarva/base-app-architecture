@@ -23,7 +23,6 @@ export const initialState = {
 }
 
 export function loginReducer(state, action) {
-  console.log({ action })
   switch (state.currentState) {
     case LOGIN_STATES.fillForm:
       return fillFormReducer(state, action)
